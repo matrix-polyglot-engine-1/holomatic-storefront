@@ -1,4 +1,22 @@
-<!DOCTYPE html>
+import os
+import sys
+import logging
+from flask import Flask, render_template_string
+
+# 1. CONFIGURE LOGGING
+# Keeps the Render service console clear and professional
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(message)s',
+    handlers=[logging.StreamHandler(sys.stdout)]
+)
+
+# 2. INITIALIZE FLASK
+app = Flask(__name__)
+
+# 3. SECURE HTML CONTENT (The Storefront Catalog)
+# This serves your clean brochure to the public internet.
+HTML_CONTENT = """<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -29,37 +47,37 @@
         <div class="service-card">
             <h3>1. Market Sentiment &amp; Trend Velocity Packets</h3>
             <p>Real-time text-stream data payloads mapping conversation speed and sentiment polarity scores.</p>
-            <a href="#" class="btn">Subscribe to Feed via Stripe</a>
+            <a href="https://lemonsqueezy.com" class="btn">Subscribe to Feed</a>
         </div>
 
         <div class="service-card">
             <h3>2. High-Frequency Commercial Pricing Matrices</h3>
             <p>Finished data sets tracking competitor pricing, discount history, and pre-calculated margin targets.</p>
-            <a href="#" class="btn">Subscribe to Feed via Stripe</a>
+            <a href="https://lemonsqueezy.com" class="btn">Subscribe to Feed</a>
         </div>
 
         <div class="service-card">
             <h3>3. Tech Stack Telemetry &amp; Vulnerability Data</h3>
             <p>Structured security payloads containing ecosystem risk matrices, patch velocities, and library stability metrics.</p>
-            <a href="#" class="btn">Subscribe to Feed via Stripe</a>
+            <a href="https://lemonsqueezy.com" class="btn">Subscribe to Feed</a>
         </div>
 
         <div class="service-card">
             <h3>4. Public Record &amp; Real Estate Asset Matrices</h3>
             <p>Clean data blocks delivering formatted property transfers, corporate filings, and localized zoning modifications.</p>
-            <a href="#" class="btn">Subscribe to Feed via Stripe</a>
+            <a href="https://lemonsqueezy.com" class="btn">Subscribe to Feed</a>
         </div>
 
         <div class="service-card">
             <h3>5. Aerospace Material Structural Decay Profiles</h3>
             <p>Pre-calculated stress metrics detailing crystal alloy degradation under multi-vibration simulated vacuums.</p>
-            <a href="#" class="btn">Subscribe to Feed via Stripe</a>
+            <a href="https://lemonsqueezy.com" class="btn">Subscribe to Feed</a>
         </div>
 
         <div class="service-card">
             <h3>6. Subterranean Sonar Terrain Density Blocks</h3>
             <p>Compiled acoustic reading packets specifying subterranean material layers, density variations, and cavity profiles.</p>
-            <a href="#" class="btn">Subscribe to Feed via Stripe</a>
+            <a href="https://lemonsqueezy.com" class="btn">Subscribe to Feed</a>
         </div>
 
         <h2>Pre-Compiled Static Data Assets</h2>
@@ -68,20 +86,34 @@
         <div class="service-card" style="border-left: 5px solid #228b22;">
             <h3>7. Matrix Polyglot Linguistic Packets</h3>
             <p>Pre-packaged, multi-layer language structure data sets designed for instant database loader scripts.</p>
-            <a href="#" class="btn">Purchase Data Packet via Stripe</a>
+            <a href="https://lemonsqueezy.com" class="btn">Purchase Data Packet</a>
         </div>
 
         <div class="service-card" style="border-left: 5px solid #228b22;">
             <h3>8. Ray-Tracing Optimization Vector Tables</h3>
             <p>Static calculation tables mapping coordinate adjustments to bypass traditional trigonometric graphics overhead.</p>
-            <a href="#" class="btn">Purchase Data Packet via Stripe</a>
+            <a href="https://lemonsqueezy.com" class="btn">Purchase Data Packet</a>
         </div>
     </main>
 
     <footer>
         <p>&copy; 2026 Holomatic Solutions. All Rights Reserved.</p>
-        <p><a href="terms.html">Terms of Service &amp; EULA</a> | <a href="privacy.html">Privacy Policy</a></p>
+        <p><a href="#">Terms of Service</a> | <a href="#">Privacy Policy</a></p>
     </footer>
 
 </body>
 </html>
+"""
+
+# 4. HTTP ROUTING
+@app.route('/', methods=['GET'])
+def home():
+    """Serves the pure informational brochure to visitors."""
+    return render_template_string(HTML_CONTENT), 200
+
+# 5. RUN EXECUTABLE
+if __name__ == '__main__':
+    # Bind automatically to Render's required port environment variable
+    port = int(os.environ.get("PORT", 5000))
+    logging.info(f"Launching secure catalog dashboard on port {port}...")
+    app.run(host='0.0.0.0', port=port, debug=False)
