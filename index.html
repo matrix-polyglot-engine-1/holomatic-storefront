@@ -1,22 +1,4 @@
-import os
-import sys
-import logging
-from flask import Flask, render_template_string
-
-# 1. CONFIGURE LOGGING
-# Keeps the Render service console clear and professional
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(levelname)s - %(message)s',
-    handlers=[logging.StreamHandler(sys.stdout)]
-)
-
-# 2. INITIALIZE FLASK
-app = Flask(__name__)
-
-# 3. SECURE HTML CONTENT (The Storefront Catalog)
-# This serves your clean brochure to the public internet.
-HTML_CONTENT = """<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -37,62 +19,45 @@ HTML_CONTENT = """<!DOCTYPE html>
 
     <header>
         <h1>Holomatic Solutions</h1>
-        <p>Premium Telemetry Data Packets, Pre-Compiled Computational Physics Assets & Finished Matrix Feeds</p>
+        <p>Premium Telemetry Data Packets & Commercial Analytics</p>
     </header>
 
     <main>
+        <p>Welcome to Holomatic Solutions. We deliver pre-compiled, structured data payloads directly to your business. Our automated pipelines compile and format high-value telemetry, allowing you to import clean metrics straight into your databases with zero infrastructure setup.</p>
+
         <h2>Subscription API Data Packets</h2>
         <p>Secure, recurring access keys delivering structured, static data payloads with zero infrastructure exposure.</p>
         
         <div class="service-card">
             <h3>1. Market Sentiment &amp; Trend Velocity Packets</h3>
-            <p>Real-time text-stream data payloads mapping conversation speed and sentiment polarity scores.</p>
+            <p>Real-time data payloads mapping public text streams, conversation speed, and market polarity scores. Perfect for tracking shifting consumer patterns.</p>
             <a href="https://lemonsqueezy.com" class="btn">Subscribe to Feed</a>
         </div>
 
         <div class="service-card">
             <h3>2. High-Frequency Commercial Pricing Matrices</h3>
-            <p>Finished data sets tracking competitor pricing, discount history, and pre-calculated margin targets.</p>
+            <p>Finished, flat datasets tracking competitor pricing changes, discount history, and pre-calculated margin targets across major marketplaces.</p>
             <a href="https://lemonsqueezy.com" class="btn">Subscribe to Feed</a>
         </div>
 
         <div class="service-card">
             <h3>3. Tech Stack Telemetry &amp; Vulnerability Data</h3>
-            <p>Structured security payloads containing ecosystem risk matrices, patch velocities, and library stability metrics.</p>
+            <p>Structured payloads containing ecosystem risk matrices, version update velocities, and library stability metrics for public software ecosystems.</p>
             <a href="https://lemonsqueezy.com" class="btn">Subscribe to Feed</a>
         </div>
 
         <div class="service-card">
             <h3>4. Public Record &amp; Real Estate Asset Matrices</h3>
-            <p>Clean data blocks delivering formatted property transfers, corporate filings, and localized zoning modifications.</p>
+            <p>Clean, formatted data blocks detailing property ownership transfers, corporate filings, and localized zoning modifications.</p>
             <a href="https://lemonsqueezy.com" class="btn">Subscribe to Feed</a>
         </div>
 
-        <div class="service-card">
-            <h3>5. Aerospace Material Structural Decay Profiles</h3>
-            <p>Pre-calculated stress metrics detailing crystal alloy degradation under multi-vibration simulated vacuums.</p>
-            <a href="https://lemonsqueezy.com" class="btn">Subscribe to Feed</a>
-        </div>
-
-        <div class="service-card">
-            <h3>6. Subterranean Sonar Terrain Density Blocks</h3>
-            <p>Compiled acoustic reading packets specifying subterranean material layers, density variations, and cavity profiles.</p>
-            <a href="https://lemonsqueezy.com" class="btn">Subscribe to Feed</a>
-        </div>
-
-        <h2>Pre-Compiled Static Data Assets</h2>
-        <p>Flat, structured files ready for immediate integration into your databases.</p>
-
+        <h2>Custom Assets &amp; Advanced Computational Matrix Packets</h2>
+        <p>Our engineering pipelines are continuously compiling new specialized datasets, including aerospace stress profiles and subterranean terrain density blocks.</p>
         <div class="service-card" style="border-left: 5px solid #228b22;">
-            <h3>7. Matrix Polyglot Linguistic Packets</h3>
-            <p>Pre-packaged, multi-layer language structure data sets designed for instant database loader scripts.</p>
-            <a href="https://lemonsqueezy.com" class="btn">Purchase Data Packet</a>
-        </div>
-
-        <div class="service-card" style="border-left: 5px solid #228b22;">
-            <h3>8. Ray-Tracing Optimization Vector Tables</h3>
-            <p>Static calculation tables mapping coordinate adjustments to bypass traditional trigonometric graphics overhead.</p>
-            <a href="https://lemonsqueezy.com" class="btn">Purchase Data Packet</a>
+            <h3>More Data Feeds Coming Soon</h3>
+            <p>We routinely add newly compiled target analytics blocks to our active subscription index.</p>
+            <a href="#" class="btn" style="background: #228b22;">Contact for Custom Requests</a>
         </div>
     </main>
 
@@ -103,17 +68,3 @@ HTML_CONTENT = """<!DOCTYPE html>
 
 </body>
 </html>
-"""
-
-# 4. HTTP ROUTING
-@app.route('/', methods=['GET'])
-def home():
-    """Serves the pure informational brochure to visitors."""
-    return render_template_string(HTML_CONTENT), 200
-
-# 5. RUN EXECUTABLE
-if __name__ == '__main__':
-    # Bind automatically to Render's required port environment variable
-    port = int(os.environ.get("PORT", 5000))
-    logging.info(f"Launching secure catalog dashboard on port {port}...")
-    app.run(host='0.0.0.0', port=port, debug=False)
